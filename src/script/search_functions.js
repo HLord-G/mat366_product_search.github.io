@@ -64,7 +64,7 @@ $("#linkdisplay").append(`
                     Info
                 </button>
 
-                <a onclick="adfunct('${workdata.storedata[index].e_id}','${tosearch}')" href="${workdata.storedata[index].b_quearysearch}${tosearch}" target="_blank" class="mt-auto font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">
+                <a onclick="adfunct('${workdata.storedata[index].e_id}','${tosearch}')" href="${workdata.storedata[index].b_quearysearch}${tosearch}" target="_blank"  class="btn btn-warning mt-auto font-bold text-gray-100 transition duration-100 btn-sm mr-2">
                     View Store
                 </a>   
                 <input type="checkbox"  id="${workdata.storedata[index].e_id}toggles" toggleid="${workdata.storedata[index].e_id}" class="toggle toggletandog toggle-info  toggle-xs" ${togglepree} />

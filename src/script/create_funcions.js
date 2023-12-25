@@ -1,16 +1,35 @@
 $("#getlinkandcreate").click(function(){
-    alert(title_link($("#storequerylink").val()))
+
+ 
+    for (let index = 0; index < workdata.storedata.length; index++) {
+         
+        if (workdata.storedata[index].a_storename.toLowerCase() == title_link($("#storequerylink").val()).toLowerCase().trim()) {
+                $("#dataerror").show()
+
+            setTimeout(() => {
+                $("#dataerror").hide()
+            }, 2000);
+            return
+        }
+    }
 
 
-    workdata.storedata.push({
-        a_storename:`${title_link($("#storequerylink").val())}`,
-        b_quearysearch:`${$("#storequerylink").val()}`,
-        c_note:"",
-        d_tags:[],
-        e_id:`${randomid()}${title_link($("#storequerylink").val())}`,
-        f_views:0,
-        g_autoopen:false
-    })
+    
+        workdata.storedata.push({
+            a_storename:`${title_link($("#storequerylink").val())}`,
+            b_quearysearch:`${$("#storequerylink").val()}`,
+            c_note:"",
+            d_tags:[],
+            e_id:`${randomid()}${title_link($("#storequerylink").val())}`,
+            f_views:0,
+            g_autoopen:false
+        })
+    
+        $("#createstore").click() 
+        $("#storequerylink").val(null)
+
+
+
 })
 
 
