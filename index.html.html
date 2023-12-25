@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAT633 Product Search</title>
+
+
+    <script src="src/lib/jquery/jquery.js"></script>
+    <script src="src/lib/jquery/jui.js"></script>
+    <script src="src/lib/jquery/jq_ui_youch_punch.js"></script>
+
+
+    <link rel="stylesheet" href="src/lib/ui/style/gzmnui.css">
+    <script src="src/lib/ui/script/gzmnui.js"></script>
+
+
+    <style>
+        #additempopup{
+            position:fixed;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            z-index:9;
+        }
+
+        .addbackground{
+            position:fixed;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            z-index:8;
+            width:100%;
+            height:100%;
+            background-color: rgba(0, 0, 0, 0.349);
+        }
+
+        #itemtosearch {
+            width: 550px;
+        }
+
+        @media (max-width: 768) {
+            #itemtosearch {
+                width: 350px;
+            }
+        }
+
+        @media (max-width: 425) {
+            #itemtosearch {
+                width: 320px;
+            }
+        }
+    </style>
+
+<script>
+
+  let workdata = {
+    storedata:[
+        {
+            a_storename:"Amazon",
+            b_quearysearch:"https://www.amazon.com/s?k=",
+            c_note:"",
+            d_tags:"",
+            e_id:"062415amazon",
+            f_views:0,
+            g_autoopen:false
+        },
+        {
+            a_storename:"eBay",
+            b_quearysearch:"https://www.ebay.com/sch/i.html?_nkw=",
+            c_note:"",
+            d_tags:"",
+            e_id:"062415eBay",
+            f_views:0,
+            g_autoopen:false
+        },
+        {
+            a_storename:"Walmart",
+            b_quearysearch:"https://www.walmart.com/search/?query=",
+            c_note:"",
+            d_tags:"",
+            e_id:"062415walmart",
+            f_views:0,
+            g_autoopen:false
+        },
+        {
+            a_storename:"Target",
+            b_quearysearch:"https://www.target.com/s?searchTerm=",
+            c_note:"",
+            d_tags:"",
+            e_id:"062415target",
+            f_views:0,
+            g_autoopen:false
+        },
+        {
+            a_storename:"Best Buy",
+            b_quearysearch:"https://www.bestbuy.com/site/searchpage.jsp?st=",
+            c_note:"",
+            d_tags:"",
+            e_id:"062415bestbuy",
+            f_views:0,
+            g_autoopen:false
+        },
+        {
+            a_storename:"Macy\'s",
+            b_quearysearch:'https://www.macys.com/shop/featured/',
+            c_note:"",
+            d_tags:"",
+            e_id:"062415macys",
+            f_views:0,
+            g_autoopen:false
+        }
+    ]
+  }
+
+     
+</script>
+
+
+
+
+
+
+
+</head>
+<body>
+<!-- *[S] NAV BAR -->
+    <div class="navbar bg-base-100"><div class="flex-1">
+        <a class="btn btn-ghost text-xl">MAT633 Corp.</a>
+    </div><div class="flex-none">
+
+
+<!-- *[S] ADD STORE -->
+            <div tabindex="0" id="createstore" title="Add Store" class="btn btn-ghost btn-circle">
+              <div class="indicator">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-node-plus-fill" viewBox="0 0 16 16">
+                    <path d="M11 13a5 5 0 1 0-4.975-5.5H4A1.5 1.5 0 0 0 2.5 6h-1A1.5 1.5 0 0 0 0 7.5v1A1.5 1.5 0 0 0 1.5 10h1A1.5 1.5 0 0 0 4 8.5h2.025A5 5 0 0 0 11 13m.5-7.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2a.5.5 0 0 1 1 0"/>
+                  </svg>
+              </div>
+            </div>
+<!-- ![E] ADD STORE -->
+
+
+          <div class="dropdown dropdown-end">
+
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                <div class="w-10 rounded-full">
+                    <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                </div>
+                </div>
+
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+        
+                <li><a>Import</a></li>
+                <li><a>History</a></li>
+
+                <br>
+                <li onclick="savedata()"><a>Save</a></li>
+                </ul>
+
+          </div></div></div>
+<!-- ![E] NAV BAR -->
+
+
+
+    <!-- <label for="searchQuery">Search Query:</label>
+    <input type="text" id="searchQuery" placeholder="Enter your search query">
+
+    <label for="lowPrice">Low Price:</label>
+    <input type="number" id="lowPrice" placeholder="Enter low price">
+
+    <button onclick="performSearch()">Search</button>
+
+    <br><br>
+    <div class="linksdisplay">
+
+    </div> -->
+
+
+
+
+
+
+
+
+
+
+
+    <div class="bg-base-100 py-6 sm:py-8 lg:py-12">
+        <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+          <!-- text - start -->
+          <div class="mb-10 md:mb-16">
+            <h2 class="mb-4 text-center text-2xl font-bold text-base-content  md:mb-6  lg:text-3xl">Shopping Search</h2>
+            
+
+
+<!-- *[S] SEARCH STORE -->
+        <div class="join w-full flex justify-center">
+
+                <input id="itemtosearch" class="input w-full input-bordered join-item" placeholder="Search"/>
+            
+
+                <select class="select select-bordered join-item">
+                    <option  selected>All</option>
+                    <option>Sci-fi</option>
+                    <option>Drama</option>
+                    <option>Action</option>
+                </select>
+
+                <div class="indicator">
+                    <button id="searchnow" class="btn join-item">Search</button>
+                </div>
+
+            </div><br>
+<!-- ![E] SEARCH STORE -->
+
+
+            <p id="searchitemview" class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">
+                <!-- SEARCH ITEM NAME HERE -->
+            </p>
+          </div>
+          <!-- text - end -->
+
+
+         
+<!-- *[S] GOOGLE STORE -->
+        <section id="googleshop" class="py-6 text-base-content dark:bg-base-100 dark:text-gray-50 border">
+        </section><br>
+<!-- ![E] GOOGLE STORE -->
+
+
+
+
+
+
+
+
+
+
+      
+    <div id="linkdisplay" class="grid gap-2 sm:grid-cols-2 md:gap-2 xl:grid-cols-3">
+    </div>
+          
+
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+<!-- *[S] ADD POPUP -->
+<div id="addbackground" class="addbackground hidden"></div>
+<div id="additempopup" class="p-10 w-[60%] hidden bg-base-200 shadow-lg flex justify-center border-2">
+    <div class="centerinter w-full">
+        <h2 class="text-center mb-3">Add Store Search</h2>
+        <input type="text" placeholder="Url here" class="input input-bordered w-full" />
+        <button class="btn btn-info btn-sm mt-3 text-gray-100">Add</button>
+    </div>
+</div>
+<!-- ![E] ADD POPUP -->
+
+
+
+
+
+<!-- 
+    <script>
+        function performSearch() {
+            // Get user input
+            const searchQuery = encodeURIComponent(document.getElementById('searchQuery').value);
+            const lowPrice = document.getElementById('lowPrice').value;
+
+            // Construct the Google Shopping search link
+            const googleShoppingLink = `https://www.google.com/search?tbm=shop&q=${searchQuery}&price=${lowPrice}..`;
+            document.querySelector(".linksdisplay").innerHTML = ""
+            // Open the link in a new tab
+             document.querySelector(".linksdisplay").innerHTML += `
+             <a target="_blank" href="${googleShoppingLink}"> Google Products</a> <br>
+             <a target="_blank" href="https://www.amazon.com/s?k=${searchQuery}"> Amazon</a><br>
+             <a target="_blank" href="https://www.ebay.com/sch/i.html?_nkw=${searchQuery}"> Ebay </a><br>
+             <a target="_blank" href="https://www.walmart.com/search/?query=${searchQuery}"> Walmart</a><br>
+             <a target="_blank" href="https://www.target.com/s?searchTerm=${searchQuery}"> Target</a><br>
+             `
+        }
+    </script> -->
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+<!-- <script>
+    const url = "https://www.mambaui.com/components/call-to-action";
+    const regex = /\.(.*?)\./;
+    const match = url.match(regex);
+
+    if (match) {
+        const centerText = match[1];
+        document.body.innerHTML = `<h1>${centerText}</h1>`;
+    } else {
+        document.body.innerHTML = "<p>No match found.</p>";
+    }
+</script> -->
+
+
+
+
+<script>
+
+//*[S] POPUP SCRIPT
+    $("#createstore").click(function(){
+        $("#addbackground").toggle()
+        $("#additempopup").toggle()
+    })
+    $("#addbackground").click(function(){
+        $("#createstore").click() 
+    })
+//![E] POPUP SCRIPT
+
+
+
+    $("#searchnow").click(function(){
+
+        if ($("#itemtosearch").val().trim() == "" || $("#itemtosearch").val().trim() == null) {
+            return
+        }
+
+      const product = convertToLinkAndRemoveSpecialChars($("#itemtosearch").val().trim())
+      const googleShoppingLink = `https://www.google.com/search?tbm=shop&q=${product}`
+      
+
+      $("#searchitemview").text(`Searching: ${product}`)
+      $("#itemtosearch").val(null)
+      googleshop(product)
+      dataalldisplay(product)
+
+    })
+
+
+    function convertToLinkAndRemoveSpecialChars(text) {
+        // Remove special characters
+        const cleanedText = text.replace(/[^\w\s]/gi, '').trim();
+
+        // Convert to a link
+        const linkText = cleanedText.toLowerCase().replace(/\s/g, ' ');
+
+        return linkText;
+        }
+
+
+
+    function googleshop(googldpromt){
+        $("#googleshop").html(`
+        <div class="container mx-auto flex flex-col items-center justify-center p-4 space-y-8 md:p-5 md:px-24 xl:px-48">
+                <h1 class="text-5xl font-bold leadi text-base-content text-center">Google Shopping</h1>
+                <!-- <p class="text-xl font-medium text-center">At a assumenda quas cum earum ut itaque commodi saepe rem aspernatur quam natus quis nihil quod, hic explicabo doloribus magnam neque, exercitationem eius sunt!</p> -->
+                <div class="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:space-x-8">
+                    <a href="https://www.google.com/search?tbm=shop&q=${googldpromt}" id="searchgoogle" target="_blank" class="px-8 py-3 text-lg font-semibold btn rounded bg-info  text-gray-100">Search Item</a>
+                </div>
+            </div>
+        `)
+    }
+
+
+
+
+    // pag display tanan data once ma click ang search 
+    function dataalldisplay(tosearch){
+        $("#linkdisplay").html(null)
+        let togglepree = ""
+        for (let index = 0; index < workdata.storedata.length; index++) {
+
+
+        if (workdata.storedata[index].g_autoopen == true) {
+            togglepree = "checked"
+        }else{
+            togglepree = ""
+        }
+
+
+
+
+$("#linkdisplay").append(`
+<!-- feature - start -->
+        <div class="flex flex-col rounded-lg border p-4 md:p-6">
+            <h3 class="mb-2 text-lg font-semibold md:text-xl">
+            <a href="${workdata.storedata[index].b_quearysearch}${tosearch}" id="${workdata.storedata[index].e_id}openthis" onclick="adfunct('${workdata.storedata[index].e_id}','${tosearch}')" target="_blank">
+                ${workdata.storedata[index].a_storename}
+                </a>
+            </h3>
+            <p class="mb-4 text-gray-500"><small>${tosearch}</small></p>
+
+            <div class="btns_stores">
+                <button onclick="infoviews(${workdata.storedata[index].e_id})" class="btn btn-info mt-auto font-bold text-gray-100 transition duration-100 btn-sm mr-2">
+                    Info
+                </button>
+
+                <a onclick="adfunct('${workdata.storedata[index].e_id}','${tosearch}')" href="${workdata.storedata[index].b_quearysearch}${tosearch}" target="_blank" class="mt-auto font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">
+                    View Store
+                </a>   
+                <input type="checkbox"  id="${workdata.storedata[index].e_id}toggles" toggleid="${workdata.storedata[index].e_id}" class="toggle toggletandog toggle-info  toggle-xs" ${togglepree} />
+                    |  <small><small>Views <span id="${workdata.storedata[index].e_id}clicked">0</span></small></small>
+            </div>
+        </div>
+<!-- feature - end -->
+`)
+        }
+ 
+
+        let links = [];
+        let uniqueLinks = [];
+        for (let o = 0; o < workdata.storedata.length; o++) {
+            if (workdata.storedata[o].g_autoopen == true) {
+                links.push(`${workdata.storedata[o].b_quearysearch}${tosearch}`)
+                $(`#${workdata.storedata[o].e_id}openthis`).click()
+            }
+        }
+        
+        uniqueLinks = [...new Set(links)];
+        uniqueLinks.forEach(link => {
+         window.open(link, '_blank');
+        });
+
+
+
+        togglefunct()
+    }
+
+
+
+    function infoviews(idpromt){
+        alert(idpromt)
+    }
+
+
+
+
+    function adfunct(prmt){
+        for (let index = 0; index < workdata.storedata.length; index++) {
+            if (workdata.storedata[index].e_id == prmt) {
+                let count = workdata.storedata[index].f_views += 1
+                $(`#${workdata.storedata[index].e_id}clicked`).text(count)
+
+            }
+        }
+    }
+
+
+
+    function togglefunct(){
+        $(".toggletandog").click(function(){
+
+        for (let index = 0; index < workdata.storedata.length; index++) {
+            if (workdata.storedata[index].e_id == $(this).attr("toggleid")) {
+                if (workdata.storedata[index].g_autoopen == false) {
+                    workdata.storedata[index].g_autoopen = true
+                }else{
+                    workdata.storedata[index].g_autoopen = false
+                }
+            }
+        }
+        })
+    }
+
+
+
+ 
+
+</script>
+
+
+
+
+
+
+
+
+
+
+ 
