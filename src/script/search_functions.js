@@ -4,9 +4,22 @@ $("#searchnow").click(function(){
         return
     }
 
+
+
+
   const product = convertToLinkAndRemoveSpecialChars($("#itemtosearch").val().trim())
   const googleShoppingLink = `https://www.google.com/search?tbm=shop&q=${product}`
-  
+
+
+if (temp_search_history.title_search != product) {
+    temp_search_history = {
+        title_search:product,
+        store_open:[],
+        date:`${monthInWords} ${date}, ${years} | ${hours}:${mints} ${period}`
+    }
+}history()
+
+
 
   $("#searchitemview").text(`Searching: ${product}`)
   $("#itemtosearch").val(null)
@@ -24,7 +37,7 @@ function googleshop(googldpromt){
             <h1 class="text-5xl font-bold leadi text-base-content text-center">Google Shopping</h1>
             <!-- <p class="text-xl font-medium text-center">At a assumenda quas cum earum ut itaque commodi saepe rem aspernatur quam natus quis nihil quod, hic explicabo doloribus magnam neque, exercitationem eius sunt!</p> -->
             <div class="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:space-x-8">
-                <a href="https://www.google.com/search?tbm=shop&q=${googldpromt}" id="searchgoogle" target="_blank" class="px-8 py-3 text-lg font-semibold btn rounded bg-info  text-gray-100">Search Item</a>
+                <a href="https://www.google.com/search?tbm=shop&q=${googldpromt}" id="searchgoogle" target="_blank" class="px-8 py-3 text-lg font-semibold btn rounded bg-info  text-gray-100" onclick="adfunct('062415google')">Search Item</a>
             </div>
         </div>
     `)
@@ -91,9 +104,9 @@ $("#linkdisplay").append(`
          window.open(link, '_blank');
         });
 
-        setTimeout(() => {
-            window.open(`${workdata.storedata[0].b_quearysearch}${tosearch}`, '_blank');
-        }, 100);
+        // setTimeout(() => {
+        //     window.open(`${workdata.storedata[0].b_quearysearch}${tosearch}`, '_blank');
+        // }, 100);
 
 
         togglefunct()

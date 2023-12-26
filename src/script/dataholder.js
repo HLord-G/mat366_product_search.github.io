@@ -1,7 +1,7 @@
 let workdata = {
     storedata:[
         {
-            a_storename:"google",
+            a_storename:"Google Shopping",
             b_quearysearch:"https://www.google.com/search?tbm=shop&q=",
             c_note:"",
             d_tags:[],
@@ -64,11 +64,15 @@ let workdata = {
             g_autoopen:false
         }
     ],
-    search_history:[
-        {
-            a_title_search:"",
-            b_store_open:[],
-            c_date:``,
-        }
-    ]
+    search_history:[]
   } 
+
+
+
+
+  let temp_search_history = {
+    title_search:"",
+    store_open:[],
+    date:``,
+    opentoggle:false
+  }

@@ -28,7 +28,7 @@ $("#savedata").click(async function(){
       sec = d.getSeconds();
   
       // Convert the object to a JSON string
-      let jsonString = JSON.stringify(workdata.storedata);
+      let jsonString = JSON.stringify(workdata);
       
       // Write the JSON string to the file
       await writable.write(jsonString);
