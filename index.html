@@ -101,9 +101,30 @@
 
                 <select class="select select-bordered join-item">
                     <option  selected>All</option>
-                    <option>Sci-fi</option>
-                    <option>Drama</option>
-                    <option>Action</option>
+                    <option>Books & E-Books</option>
+                    <option>Electronics</option>
+                    <option>Computers</option>
+                    <option>Smart Home</option>
+                    <option>Art & Crafts</option>
+                    <option>Automotive</option>
+                    <option>Baby</option>
+                    <option>Beauty and Personal Care</option>
+                    <option>Women's Fashion</option>
+                    <option>Men's Fashion</option>
+                    <option>Girl's Fashion</option>
+                    <option>Boy's Fashion</option>
+                    <option>Heath and Household</option>
+                    <option>Home and Kitchen</option>
+                    <option>Industrial and Scientific</option>
+                    <option>Luggage</option>
+                    <option>Movie & Television</option>
+                    <option>Pet Supplies</option>
+                    <option>Software</option>
+                    <option>Sport and Outdoors</option>
+                    <option>Tools & Home Improvement</option>
+                    <option>Toys and Games</option>
+                    <option>Video Games</option>
+                    
                 </select>
 
                 <div class="indicator">
@@ -147,6 +168,68 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+<!-- *[S] POPUP INFO -->
+<div id="infoviews" class="bg-base-100">
+    <div class="infocontent">
+        <div class="boxs">
+            <div class="header">
+Store Name
+            </div>
+            <div class="notes">
+                <textarea name="" id="">Note Here:</textarea>
+            </div>
+        </div>
+        <div class="boxs">
+            <div class="header">
+                sdfsdf
+            </div>
+            <div class="tags">
+                <div class="inputs">
+                    <select class="select select-bordered w-full max-w-xs">
+                        <option disabled selected>Select Your Categories </option>
+                        <option>Books & E-Books</option>
+                        <option>Electronics</option>
+                        <option>Computers</option>
+                        <option>Smart Home</option>
+                        <option>Art & Crafts</option>
+                        <option>Automotive</option>
+                        <option>Baby</option>
+                        <option>Beauty and Personal Care</option>
+                        <option>Women's Fashion</option>
+                        <option>Men's Fashion</option>
+                        <option>Girl's Fashion</option>
+                        <option>Boy's Fashion</option>
+                        <option>Heath and Household</option>
+                        <option>Home and Kitchen</option>
+                        <option>Industrial and Scientific</option>
+                        <option>Luggage</option>
+                        <option>Movie & Television</option>
+                        <option>Pet Supplies</option>
+                        <option>Software</option>
+                        <option>Sport and Outdoors</option>
+                        <option>Tools & Home Improvement</option>
+                        <option>Toys and Games</option>
+                        <option>Video Games</option>
+                      </select>
+                </div>
+                <div class="tagdisplay">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ![E] POPUP INFO -->
 
 
 
@@ -295,9 +378,7 @@
 <script>
  
 
-    function infoviews(idpromt){
-        alert(idpromt)
-    }
+
 
 
 
@@ -311,6 +392,10 @@
                 workdata.search_history[workdata.search_history.length - 1].b_store_open.push(workdata.storedata[index].a_storename)
                 workdata.search_history[workdata.search_history.length - 1].b_store_open = [...new Set(workdata.search_history[workdata.search_history.length - 1].b_store_open)];
             }
+        }
+
+        for (let c = 0; c < workdata.storedata.length; c++) {
+            $(`#${workdata.storedata[c].e_id}clicked`).text(workdata.storedata[c].f_views)
         }
     }
 
@@ -338,6 +423,8 @@
 </script>
 <script src="src/script/thememode.js"></script>
 <script src="src/script/history.js"></script>
+<script src="src/script/viewinfo.js"> </script>
+
 
 <script src="src/script/save.js"> </script>
 

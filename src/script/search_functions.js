@@ -73,14 +73,18 @@ $("#linkdisplay").append(`
             <p class="mb-4 text-gray-500"><small>${tosearch}</small></p>
 
             <div class="btns_stores">
-                <button onclick="infoviews(${workdata.storedata[index].e_id})" class="btn btn-info mt-auto font-bold text-gray-100 transition duration-100 btn-sm mr-2">
+                <button onclick="infoviews('${workdata.storedata[index].e_id}')" class="btn btn-info mt-auto font-bold text-gray-100 transition duration-100 btn-sm mr-2">
                     Info
                 </button>
 
                 <a onclick="adfunct('${workdata.storedata[index].e_id}','${tosearch}')" href="${workdata.storedata[index].b_quearysearch}${tosearch}" target="_blank"  class="btn btn-warning mt-auto font-bold text-gray-100 transition duration-100 btn-sm mr-2">
                     View Store
                 </a>   
+
+                <div class="tooltip tooltip-top" data-tip="Auto Open Store">
                 <input type="checkbox"  id="${workdata.storedata[index].e_id}toggles" toggleid="${workdata.storedata[index].e_id}" class="toggle toggletandog toggle-info  toggle-xs" ${togglepree} />
+                </div>
+
                     |  <small><small>Views <span id="${workdata.storedata[index].e_id}clicked">0</span></small></small>
             </div>
         </div>
@@ -110,4 +114,15 @@ $("#linkdisplay").append(`
 
 
         togglefunct()
-    }
+    }    
+    
+
+
+
+
+
+
+
+
+
+

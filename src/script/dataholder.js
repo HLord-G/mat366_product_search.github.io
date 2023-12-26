@@ -76,3 +76,8 @@ let workdata = {
     date:``,
     opentoggle:false
   }
+
+
+  let temp_infoviews = {
+        openclosetoggle:false
+  }

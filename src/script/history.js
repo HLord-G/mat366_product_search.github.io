@@ -27,13 +27,15 @@ $("#viewhistory").click(function(){
 
 function openclose_history(){
     if (temp_search_history.opentoggle == false) {
-        $("#history").toggle()
-        temp_search_history.opentoggle = true
-
+        $("#history").show()
+        $("body").css({"overflow":"hidden"})
+        setTimeout(() => {
+            temp_search_history.opentoggle = true
+        }, 100);
     }else{
-        $("#history").toggle()
+        $("#history").hide()
         $("#historydisplay").html(null)
-
+        $("body").css({"overflow":"auto"})
 
 
 for (let index = 0; index < workdata.search_history.length; index++) {
@@ -73,7 +75,9 @@ for (let index = 0; index < workdata.search_history.length; index++) {
 }
  
 
-        temp_search_history.opentoggle = false
+        setTimeout(() => {
+            temp_search_history.opentoggle = false
+        }, 100);
     }
 
 
@@ -86,7 +90,12 @@ for (let index = 0; index < workdata.search_history.length; index++) {
         
         setTimeout(() => {
             $("#searchnow").click()
-            openclose_history()
+            $("#history").hide()
+            $("body").css({"overflow":"auto"})
+
+     
+            temp_search_history.opentoggle = false
+        
         }, 10);
     })
 }
