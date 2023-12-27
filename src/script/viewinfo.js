@@ -2,7 +2,6 @@
 
 
 function infoviews(idpromt){
-    alert(`${idpromt}`)
 
     if (temp_infoviews.openclosetoggle == false) {
         $("#infoviews").show()
