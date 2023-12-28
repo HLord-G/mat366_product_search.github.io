@@ -79,5 +79,33 @@ let workdata = {
 
 
   let temp_infoviews = {
-        openclosetoggle:false
+        openclosetoggle:false,
+        idholder:null,
+        datacatiguria:[
+            "Books & E-Books",
+            "Electronics",
+            "Computers",
+            "Smart Home",
+            "Art & Crafts",
+            "Automotive",
+            "Baby",
+            "Beauty and Personal Care",
+            "Women's Fashion",
+            "Men's Fashion",
+            "Girl's Fashion",
+            "Boy's Fashion",
+            "Heath and Household",
+            "Home and Kitchen",
+            "Industrial and Scientific",
+            "Luggage",
+            "Movie & Television",
+            "Pet Supplies",
+            "Software",
+            "Sport and Outdoors",
+            "Tools & Home Improvement",
+            "Toys and Games",
+            "Video Games"
+        ],
+        timp_datacatiguria:[]
   }
+  let arrtemp = []
