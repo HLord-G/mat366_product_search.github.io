@@ -410,6 +410,16 @@
 <script src="src/script/timer.js"></script>
 
 
+<script>
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            $("#searchnow").click()
+        }
+    });
+
+</script>
+
+
 <!--//*[S]  IMPORT DATA  -->
 <input type="file" id="jsonFileInput" accept=".json" style="visibility: hidden;">
 <script src="src/script/import.js"> </script>
