@@ -59,40 +59,94 @@ function dataalldisplay(tosearch){
             togglepree = ""
         }
 
+     
 
-
-
-$("#linkdisplay").append(`
-<!-- feature - start -->
-        <div class="flex flex-col rounded-lg border p-4 md:p-6">
-            <h3 class="mb-2 text-lg font-semibold md:text-xl">
-            <a href="${workdata.storedata[index].b_quearysearch}${tosearch}" id="${workdata.storedata[index].e_id}openthis" onclick="adfunct('${workdata.storedata[index].e_id}','${tosearch}')" target="_blank">
-                ${workdata.storedata[index].a_storename}
-                </a>
-            </h3>
-            <p class="mb-4 text-gray-500"><small>${tosearch}</small></p>
-
-            <div class="btns_stores">
-                <button onclick="infoviews('${workdata.storedata[index].e_id}')" class="btn btn-info mt-auto font-bold text-gray-100 transition duration-100 btn-sm mr-2">
-                    Info
-                </button>
-
-                <a onclick="adfunct('${workdata.storedata[index].e_id}','${tosearch}')" href="${workdata.storedata[index].b_quearysearch}${tosearch}" target="_blank"  class="btn btn-warning mt-auto font-bold text-gray-100 transition duration-100 btn-sm mr-2">
-                    View Store
-                </a>   
-
-                <div class="tooltip tooltip-top" data-tip="Auto Open Store">
-                <input type="checkbox"  id="${workdata.storedata[index].e_id}toggles" toggleid="${workdata.storedata[index].e_id}" class="toggle toggletandog toggle-info  toggle-xs" ${togglepree} />
+   if ($("#tagselectedtoactive").val().trim() == "All") {
+    $("#linkdisplay").append(`
+    <!-- feature - start -->
+            <div class="flex flex-col rounded-lg border p-4 md:p-6">
+                <h3 class="mb-2 text-lg font-semibold md:text-xl">
+                <a href="${workdata.storedata[index].b_quearysearch}${tosearch}" id="${workdata.storedata[index].e_id}openthis" onclick="adfunct('${workdata.storedata[index].e_id}','${tosearch}')" target="_blank">
+                    ${workdata.storedata[index].a_storename}
+                    </a>
+                </h3>
+                <p class="mb-4 text-gray-500"><small>${tosearch}</small></p>
+    
+                <div class="btns_stores">
+                    <button onclick="infoviews('${workdata.storedata[index].e_id}')" class="btn btn-info mt-auto font-bold text-gray-100 transition duration-100 btn-sm mr-2">
+                        Info
+                    </button>
+    
+                    <a onclick="adfunct('${workdata.storedata[index].e_id}','${tosearch}')" href="${workdata.storedata[index].b_quearysearch}${tosearch}" target="_blank"  class="btn btn-warning mt-auto font-bold text-gray-100 transition duration-100 btn-sm mr-2">
+                        View Store
+                    </a>   
+    
+                    <div class="tooltip tooltip-top" data-tip="Auto Open Store">
+                    <input type="checkbox"  id="${workdata.storedata[index].e_id}toggles" toggleid="${workdata.storedata[index].e_id}" class="toggle toggletandog toggle-info  toggle-xs" ${togglepree} />
+                    </div>
+    
+                        |  <small><small>Views <span id="${workdata.storedata[index].e_id}clicked">0</span></small></small>
                 </div>
-
-                    |  <small><small>Views <span id="${workdata.storedata[index].e_id}clicked">0</span></small></small>
             </div>
-        </div>
-<!-- feature - end -->
-`)
-
+    <!-- feature - end -->
+    `)
+   }
+    
 }
  
+if ($("#tagselectedtoactive").val().trim() != "All") {
+    function searchByTag(data, tag) {
+        return data.filter(item => item.d_tags.includes(tag));
+      }
+      
+      result = searchByTag(workdata.storedata,`${$("#tagselectedtoactive").val().trim()}`);
+
+      for (let index = 0; index < result.length; index++) {
+
+
+        if (result[index].g_autoopen == true) {
+            togglepree = "checked"
+        }else{
+            togglepree = ""
+        }
+
+     
+
+    $("#linkdisplay").append(`
+    <!-- feature - start -->
+            <div class="flex flex-col rounded-lg border p-4 md:p-6">
+                <h3 class="mb-2 text-lg font-semibold md:text-xl">
+                <a href="${result[index].b_quearysearch}${tosearch}" id="${result[index].e_id}openthis" onclick="adfunct('${result[index].e_id}','${tosearch}')" target="_blank">
+                    ${result[index].a_storename}
+                    </a>
+                </h3>
+                <p class="mb-4 text-gray-500"><small>${tosearch}</small></p>
+    
+                <div class="btns_stores">
+                    <button onclick="infoviews('${result[index].e_id}')" class="btn btn-info mt-auto font-bold text-gray-100 transition duration-100 btn-sm mr-2">
+                        Info
+                    </button>
+    
+                    <a onclick="adfunct('${result[index].e_id}','${tosearch}')" href="${result[index].b_quearysearch}${tosearch}" target="_blank"  class="btn btn-warning mt-auto font-bold text-gray-100 transition duration-100 btn-sm mr-2">
+                        View Store
+                    </a>   
+    
+                    <div class="tooltip tooltip-top" data-tip="Auto Open Store">
+                    <input type="checkbox"  id="${result[index].e_id}toggles" toggleid="${result[index].e_id}" class="toggle toggletandog toggle-info  toggle-xs" ${togglepree} />
+                    </div>
+    
+                        |  <small><small>Views <span id="${result[index].e_id}clicked">0</span></small></small>
+                </div>
+            </div>
+    <!-- feature - end -->
+    `)
+    
+}
+}
+
+
+
+
 
         let links = [];
         let uniqueLinks = [];

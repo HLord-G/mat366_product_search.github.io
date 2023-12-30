@@ -48,6 +48,7 @@ body {
 #infoviews {
   position: fixed;
   overflow: auto;
+  display: none;
   top: 0;
   left: 0;
   width: 100%;
@@ -85,11 +86,14 @@ body {
   width: 100%;
   font-weight: bold;
   font-size: x-large;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row;
 }
 #infoviews .infocontent .boxs:nth-child(1) .notes {
   height: 100%;
   width: 100%;
-  border: 1px solid red;
   position: relative;
 }
 #infoviews .infocontent .boxs:nth-child(1) .notes textarea {
@@ -102,15 +106,41 @@ body {
 }
 #infoviews .infocontent .boxs:nth-child(2) {
   flex: 0.5;
+  position: relative;
+  overflow: hidden;
 }
 #infoviews .infocontent .boxs:nth-child(2) .header {
-  padding: 10px;
+  padding: 20px;
+  position: relative;
+}
+#infoviews .infocontent .boxs:nth-child(2) .header #closethisinfo {
+  position: absolute;
+  top: 4%;
+  right: 1%;
 }
 #infoviews .infocontent .boxs:nth-child(2) .tags {
   height: 100%;
   width: 100%;
-  overflow: auto;
   padding: 10px;
+  position: relative;
+  overflow: hidden;
+}
+#infoviews .infocontent .boxs:nth-child(2) .tags .tagdisplay {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  margin-top: 10px;
+}
+#infoviews .infocontent .boxs:nth-child(2) .tags .tagdisplay .tagchosen {
+  padding: 8px;
+  margin-top: 5px;
+  background-color: rgb(55, 139, 235);
+  color: ghostwhite;
+  cursor: pointer;
+  font-weight: bold;
+}
+#infoviews .infocontent .boxs:nth-child(2) .tags .tagdisplay .tagchosen:last-child {
+  margin-bottom: 150px;
 }
 
 #itemtosearch {

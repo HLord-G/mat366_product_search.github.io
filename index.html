@@ -49,7 +49,7 @@
 
                 <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
         
-                <li><a>Import</a></li>
+                <li id="importButton"><a>Import</a></li>
                 <li id="viewhistory"><a>History</a></li>
                 <li><a>Stores</a></li>
                 <li id="mode"><a>Dark Mode</a></li>
@@ -99,7 +99,7 @@
                 <input id="itemtosearch" class="input w-full input-bordered join-item" placeholder="Search"/>
             
 
-                <select class="select select-bordered join-item">
+                <select id="tagselectedtoactive" class="select select-bordered join-item">
                     <option  selected>All</option>
                     <option>Books & E-Books</option>
                     <option>Electronics</option>
@@ -183,15 +183,16 @@
     <div class="infocontent">
         <div class="boxs">
             <div class="header">
-Store Name
+<div class="sides titlesote"></div>
+<div class="sides counts"></div>
             </div>
             <div class="notes">
-                <textarea name="" id="">Note Here:</textarea>
+                <textarea name="" placeholder="Inter your Notes Here" id="noteofthisstore"></textarea>
             </div>
         </div>
         <div class="boxs">
             <div class="header">
-                 <div class="btn btn-sm btn-info text-gray-100">
+                 <div id="closethisinfo" class="btn btn-sm btn-info text-gray-100">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
                         <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
@@ -200,35 +201,13 @@ Store Name
             </div>
             <div class="tags">
                 <div class="inputs">
-                    <select class="select select-bordered w-full max-w-xs">
-                        <option disabled selected>Select Your Categories </option>
-                        <option>Books & E-Books</option>
-                        <option>Electronics</option>
-                        <option>Computers</option>
-                        <option>Smart Home</option>
-                        <option>Art & Crafts</option>
-                        <option>Automotive</option>
-                        <option>Baby</option>
-                        <option>Beauty and Personal Care</option>
-                        <option>Women's Fashion</option>
-                        <option>Men's Fashion</option>
-                        <option>Girl's Fashion</option>
-                        <option>Boy's Fashion</option>
-                        <option>Heath and Household</option>
-                        <option>Home and Kitchen</option>
-                        <option>Industrial and Scientific</option>
-                        <option>Luggage</option>
-                        <option>Movie & Television</option>
-                        <option>Pet Supplies</option>
-                        <option>Software</option>
-                        <option>Sport and Outdoors</option>
-                        <option>Tools & Home Improvement</option>
-                        <option>Toys and Games</option>
-                        <option>Video Games</option>
-                      </select>
+                    <select id="notetags" class="select select-bordered w-full max-w-xs">
+ 
+                    </select>
                 </div>
                 <div class="tagdisplay">
-
+                    
+ 
                 </div>
             </div>
         </div>
@@ -380,13 +359,11 @@ Store Name
 <script src="src/script/popup_createscript.js"></script>
 <script src="src/script/search_functions.js"></script>
 <script src="src/script/create_funcions.js"></script>
+
+
 <script>
  
-
-
-
-
-
+ 
 
     function adfunct(prmt){
         for (let index = 0; index < workdata.storedata.length; index++) {
@@ -429,7 +406,14 @@ Store Name
 <script src="src/script/thememode.js"></script>
 <script src="src/script/history.js"></script>
 <script src="src/script/viewinfo.js"> </script>
+<script src="src/script/reload.js"> </script>
+<script src="src/script/timer.js"></script>
 
+
+<!--//*[S]  IMPORT DATA  -->
+<input type="file" id="jsonFileInput" accept=".json" style="visibility: hidden;">
+<script src="src/script/import.js"> </script>
+<!--//![E]  IMPORT DATA  -->
 
 <script src="src/script/save.js"> </script>
 

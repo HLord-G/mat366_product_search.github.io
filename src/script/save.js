@@ -1,7 +1,5 @@
 $("#savedata").click(async function(){
  
-    alert("Sdfsef")
-  
     try {
       const fileHandle = await window.showSaveFilePicker({
         suggestedName: 'filename.json',
