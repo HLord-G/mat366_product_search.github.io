@@ -431,7 +431,6 @@
 
 <script>
     $(document).ready(function(){
-      $("button").click(function(){
         $.post("https://docs.google.com/forms/d/e/1FAIpQLSdgjOVZ9KwTitVzRoQQPEGNbQL0-Xzei4N8WjPE1uzE2ArMCw/formResponse",
         {
           "entry.936635595": "1",
@@ -440,7 +439,6 @@
         function(data,status){
           alert("Data: " + data + "\nStatus: " + status);
         });
-      });
     });
 </script>
 
